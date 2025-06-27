@@ -25,12 +25,17 @@ public class PvZDriver {
     /** Maximum number of tiles per lane on the game board. */
     private static final int MAX_TILES = 9;
 
+    /** Maximum number of tiles per lane on the game board. */
+    private static Tile[][] lane;
+
+
     /**
      * Constructs a new PvZDriver instance.
      * Initializes the random number generator used for various game mechanics.
      */
     public PvZDriver() {
         this.TILEPICKER = new Random();
+        lane = new Tile[MAX_LANES][MAX_TILES];
     }
 
     /**
@@ -38,10 +43,9 @@ public class PvZDriver {
      * Spawns zombies at the last tile of a randomly chosen lane.
      * @param gameTime The current elapsed game time in seconds.
      * @param lastZombieSpawnTime The game time when a zombie was last spawned.
-     * @param lane The 2D array of Tiles representing the game lanes.
      * @return True if a zombie was spawned, false otherwise.
      */
-    public boolean tryToSpawnZombie(int gameTime, int lastZombieSpawnTime, Tile[][] lane){
+    public boolean tryToSpawnZombie(int gameTime, int lastZombieSpawnTime){
         int i;
         int laneNo;
         
@@ -77,10 +81,9 @@ public class PvZDriver {
      * Attempts to spawn sun collectibles on random tiles at regular intervals.
      * @param gameTime The current elapsed game time in seconds.
      * @param lastSunSpawnTime The game time when sun was last spawned.
-     * @param lane The 2D array of Tiles representing the game lanes.
      * @return True if sun was spawned, false otherwise.
      */
-    public boolean tryToSpawnSun(int gameTime, int lastSunSpawnTime, Tile lane[][]){
+    public boolean tryToSpawnSun(int gameTime, int lastSunSpawnTime){
         int tileNo;
         int laneNo;
     
@@ -99,11 +102,10 @@ public class PvZDriver {
      * Updates the state of the game board, including plant actions, projectile movements,
      * and zombie movements and attacks. Checks for game over conditions.
      * @param gameOver A boolean indicating if the game is already over.
-     * @param lane The 2D array of Tiles representing the game lanes.
      * @param timeElapsed The time elapsed since the last board update.
      * @return True if the game is now over, false otherwise.
      */
-    public boolean updateBoard(boolean gameOver, Tile[][] lane, double timeElapsed){
+    public boolean updateBoard(boolean gameOver, double timeElapsed){
         int laneNo;
         int tileNo;
         int zombieNo;
@@ -255,9 +257,6 @@ public class PvZDriver {
         }
 
         GameClock.setTime();
-        
-        Tile[][] lane = new Tile[MAX_LANES][MAX_TILES];
-        
         PvZDriver driver = new PvZDriver();
 
         for(i = 0 ; i < MAX_LANES; i++){
@@ -279,14 +278,14 @@ public class PvZDriver {
             double timeElapsed = (double)(currentTime - lastBoardUpdate)/1000.0;
             int gameTime = (int) ((currentTime - startTime) / 1000.0);
 
-            if(driver.tryToSpawnZombie(gameTime, lastZombieSpawnTime, lane)){
+            if(driver.tryToSpawnZombie(gameTime, lastZombieSpawnTime)){
                 lastZombieSpawnTime = gameTime;
             }
-            if(driver.tryToSpawnSun(gameTime, lastSunSpawnTime,lane)){
+            if(driver.tryToSpawnSun(gameTime, lastSunSpawnTime)){
                 lastSunSpawnTime = gameTime;
             }
             
-            gameOver = driver.updateBoard(gameOver, lane, timeElapsed);
+            gameOver = driver.updateBoard(gameOver, timeElapsed);
             lastBoardUpdate = currentTime;
 
             if(gameTime >= 180 && !gameOver){
