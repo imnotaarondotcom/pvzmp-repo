@@ -18,7 +18,7 @@ public class Sunflower extends Plant {
     private static final double COOLDOWN = 7.5;
 
     /** Timestamp of the last Sunflower planted, for cooldown tracking. */
-    private static double timeSinceLastPlant = -7.5;
+    private static double timeSinceLastPlant = -COOLDOWN;
 
     /**
      * Constructs a Sunflower.
