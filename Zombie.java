@@ -196,6 +196,6 @@ public class Zombie {
      */
     @Override
     public String toString(){
-        return String.format("       Health : %d Speed : %.2f Damage : %d", this.health, this.SPEED, this.DAMAGE );
+        return String.format("        Health : %d Speed : %.2f Damage : %d", this.health, this.SPEED, this.DAMAGE );
     }
 }

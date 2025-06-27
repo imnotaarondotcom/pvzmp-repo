@@ -14,7 +14,7 @@ import java.time.Instant;
 
 public class PvZDriver {
     /** A shared Random instance for generating random numbers, e.g., for zombie and sun spawning. */
-    private final Random tilePicker;
+    private final Random TILEPICKER;
 
     /** Current game level, influencing zombie spawning. */
     private static int level = 1 ;
@@ -30,7 +30,7 @@ public class PvZDriver {
      * Initializes the random number generator used for various game mechanics.
      */
     public PvZDriver() {
-        this.tilePicker = new Random();
+        this.TILEPICKER = new Random();
     }
 
     /**
@@ -41,11 +41,11 @@ public class PvZDriver {
      * @param lane The 2D array of Tiles representing the game lanes.
      * @return True if a zombie was spawned, false otherwise.
      */
-    public boolean tryToSpawn(int gameTime,int lastZombieSpawnTime ,Tile[][] lane){
+    public boolean tryToSpawnZombie(int gameTime, int lastZombieSpawnTime, Tile[][] lane){
         int i;
         int laneNo;
         
-        laneNo = tilePicker.nextInt(PvZDriver.getMaxLanes()); // Randomly pick a lane for the zombie
+        laneNo = TILEPICKER.nextInt(PvZDriver.getMaxLanes()); // Randomly pick a lane for the zombie
 
         if(gameTime >= 30 && gameTime <= 80){
             if(gameTime % 10 == 0 && lastZombieSpawnTime != gameTime){
@@ -64,7 +64,7 @@ public class PvZDriver {
             }
         } else if(gameTime > 170 && lastZombieSpawnTime <= 170 ){
             for(i = 0; i < 5 + (PvZDriver.getLevel() - 1) * 2; i++){
-                laneNo = tilePicker.nextInt(PvZDriver.getMaxLanes());
+                laneNo = TILEPICKER.nextInt(PvZDriver.getMaxLanes());
                 lane[laneNo][MAX_TILES - 1].spawnZombie(laneNo,MAX_TILES - 1 );
             }
             return true;
@@ -84,8 +84,8 @@ public class PvZDriver {
         int tileNo;
         int laneNo;
     
-        tileNo = tilePicker.nextInt(PvZDriver.getMaxTiles());
-        laneNo = tilePicker.nextInt(PvZDriver.getMaxLanes());
+        tileNo = TILEPICKER.nextInt(PvZDriver.getMaxTiles());
+        laneNo = TILEPICKER.nextInt(PvZDriver.getMaxLanes());
 
         if(gameTime % 8 == 0 && lastSunSpawnTime != gameTime){
             Sun newSun = new Sun(laneNo, tileNo);
@@ -279,7 +279,7 @@ public class PvZDriver {
             double timeElapsed = (double)(currentTime - lastBoardUpdate)/1000.0;
             int gameTime = (int) ((currentTime - startTime) / 1000.0);
 
-            if(driver.tryToSpawn(gameTime, lastZombieSpawnTime, lane)){
+            if(driver.tryToSpawnZombie(gameTime, lastZombieSpawnTime, lane)){
                 lastZombieSpawnTime = gameTime;
             }
             if(driver.tryToSpawnSun(gameTime, lastSunSpawnTime,lane)){

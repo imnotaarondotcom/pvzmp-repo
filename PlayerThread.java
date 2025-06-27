@@ -93,7 +93,7 @@ public class PlayerThread implements Runnable {
                     }
                 }
                 GameClock.printTime(); // Print current game time
-                System.out.printf("Collected sun is : %d \nTotal sun is : %d\n",collectedSun, totalSun);
+                System.out.printf("Collected sun is : %d \n        Total sun is : %d\n",collectedSun, totalSun);
                 collectedSun = 0; // Reset collected sun for next cycle
             }
         }
@@ -113,7 +113,7 @@ public class PlayerThread implements Runnable {
             System.out.println("Enter lane to place:");
             selectedLaneNo = sc.nextInt(); // Use the class's scanner
             if(selectedLaneNo > PvZDriver.getMaxLanes() || selectedLaneNo < 1 ){
-                 System.out.println("not a valid lane");
+                 System.out.println("Not a valid lane");
             } 
         }
         
@@ -121,7 +121,7 @@ public class PlayerThread implements Runnable {
             System.out.println("Enter tile to place:");
             selectedTileNo = sc.nextInt(); // Use the class's scanner
             if(selectedTileNo > PvZDriver.getMaxTiles() || selectedTileNo < 1 ){
-                System.out.println("not a valid tile");
+                System.out.println("Not a valid tile");
             }
          }
 
