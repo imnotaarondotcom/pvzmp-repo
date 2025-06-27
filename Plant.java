@@ -62,9 +62,8 @@ public abstract class Plant {
      * Subclasses must implement this to define when and how the plant tries to act.
      * @param t The {@link Tile} object where the plant is currently in.
      * @param elapsedTime The time elapsed since the last update.
-     * @param tiles An array of {@link Tile} objects representing the lane the plant is currently in.
      */
-    public abstract void tryToAction(Tile t, double elapsedTime, Tile[] tiles);
+    public abstract void tryToAction(Tile t, double elapsedTime);
 
     /**
      * Allows the plant to take damage, reducing its health.

@@ -44,10 +44,9 @@ public class Peashooter extends Plant {
      * Fires if lane is not clear (i.e., there is a zombie) and attack cooldown is met.
      * @param t Current tile of the plant.
      * @param elapsedTime Time elapsed since last update.
-     * @param tiles All tiles in the plant's lane.
      */
     @Override
-    public void tryToAction(Tile t, double elapsedTime, Tile[] tiles){
+    public void tryToAction(Tile t, double elapsedTime){
         if(!isLaneClear(tiles)){
             updateTime(elapsedTime);
             if(timeSinceLastAttack >= SPEED){
