@@ -11,7 +11,7 @@ import java.util.*;
 
 public class PlayerThread implements Runnable {
     /** The game board lanes, represented as a 2D array of Tiles. */
-    volatile Tile[][] lane;
+    private volatile Tile[][] lane;
 
     /** The player's current total sun currency. */
     private int totalSun = 50; // Initial sun
