@@ -129,7 +129,7 @@ public class Projectile {
      * Returns the base damage value of the projectile.
      * @return The projectile's base damage.
      */
-    public int getDAMAGE(){
+    public int getDamage(){
         return DAMAGE;
     }
 }
