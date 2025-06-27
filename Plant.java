@@ -64,7 +64,7 @@ public abstract class Plant {
      * @param tiles All tiles in the plant's lane.
      * @param elapsedTime The time elapsed since the last update.
      */
-    public abstract void tryToAction(Tile t, double elapsedTime, Tile[][] tiles);
+    public abstract void tryToAction(Tile t, double elapsedTime, Tile[] tiles);
 
     /**
      * Allows the plant to take damage, reducing its health.

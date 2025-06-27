@@ -47,7 +47,7 @@ public class Peashooter extends Plant {
      * @param elapsedTime Time elapsed since last update.
      */
     @Override
-    public void tryToAction(Tile t, double elapsedTime, Tile[][] tiles){
+    public void tryToAction(Tile t, double elapsedTime, Tile[] tiles){
         if(!isLaneClear(tiles)){
             updateTime(elapsedTime);
             if(timeSinceLastAttack >= SPEED){
