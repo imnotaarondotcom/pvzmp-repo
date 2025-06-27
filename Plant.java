@@ -61,9 +61,10 @@ public abstract class Plant {
      * Attempts to make the plant perform its action based on game logic and timers.
      * Subclasses must implement this to define when and how the plant tries to act.
      * @param t The {@link Tile} object where the plant is currently in.
+     * @param tiles All tiles in the plant's lane.
      * @param elapsedTime The time elapsed since the last update.
      */
-    public abstract void tryToAction(Tile t, double elapsedTime);
+    public abstract void tryToAction(Tile t, double elapsedTime, Tile[][] tiles);
 
     /**
      * Allows the plant to take damage, reducing its health.

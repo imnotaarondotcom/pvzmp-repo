@@ -44,10 +44,11 @@ public class Sunflower extends Plant {
      * Attempts to make the Sunflower produce sun.
      * Produces sun if its internal production cooldown is met.
      * @param t Current tile of the plant.
+     * @param tiles All tiles in the plant's lane.
      * @param elapsedTime Time elapsed since last update.
      */
     @Override
-    public void tryToAction(Tile t, double elapsedTime){
+    public void tryToAction(Tile t, double elapsedTime, Tile[][] tiles){
         updateTime(elapsedTime);
         if(timeSinceLastAttack >= SPEED){
             action(t);
