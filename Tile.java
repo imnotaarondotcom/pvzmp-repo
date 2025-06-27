@@ -118,7 +118,7 @@ public class Tile {
      * @return The number of zombies in the tile.
      */
     public int noZombies(){
-        return zombies.size(); // Use ArrayList's size method for conciseness
+        return zombies.size(); 
     }
 
     /**
@@ -127,7 +127,7 @@ public class Tile {
      * @return The zombie with the highest position, or null if no zombies are present.
      */
     public Zombie highestPosition(){
-        if (zombies.isEmpty()) { // Check if the list is empty first
+        if (zombies.isEmpty()) { 
             return null;
         }
         
@@ -135,7 +135,7 @@ public class Tile {
         // Zombies move from right to left, so a lower position value means closer to the house (further left).
         double minPosition = Double.MAX_VALUE; 
 
-        for(Zombie z : zombies){ // Enhanced for-loop for readability
+        for(Zombie z : zombies){ 
             if(z.getPosition() < minPosition){
                 minPosition = z.getPosition();
                 highestZombie = z;
@@ -143,7 +143,23 @@ public class Tile {
         }
         return highestZombie;
     }
+
+    /**
+     * Adds a sun collectible to this tile's list of suns.
+     * @param sun The {@link Sun} object to be added.
+     */
+    public void addSun(Sun sun){
+        this.sun.add(sun);
+    }
     
+    /**
+     * Checks if this tile has any zombies occupying it.
+     * @return True if there is at least one zombie, false otherwise.
+     */
+    public boolean hasZombie(){
+        return !zombies.isEmpty();
+    }
+        
     /**
      * Returns the list containing all zombies on this tile.
      * @return An {@link ArrayList} of {@link Zombie} objects.
@@ -161,19 +177,11 @@ public class Tile {
     }
 
     /**
-     * Adds a sun collectible to this tile's list of suns.
-     * @param sun The {@link Sun} object to be added.
+     * Returns the list of sun collectibles currently on this tile.
+     * @return An {@link ArrayList} of {@link Sun} objects.
      */
-    public void addSun(Sun sun){
-        this.sun.add(sun);
-    }
-    
-    /**
-     * Checks if this tile has any zombies occupying it.
-     * @return True if there is at least one zombie, false otherwise.
-     */
-    public boolean hasZombie(){
-        return !zombies.isEmpty(); // Concise check if ArrayList is not empty
+    public ArrayList<Sun> getSunList(){
+        return sun;
     }
 
     /**
@@ -190,14 +198,6 @@ public class Tile {
      */
     public static int getTileLength(){
         return TILE_LENGTH;
-    }
-
-    /**
-     * Returns the list of sun collectibles currently on this tile.
-     * @return An {@link ArrayList} of {@link Sun} objects.
-     */
-    public ArrayList<Sun> getSunList(){
-        return sun;
     }
 
     /**
