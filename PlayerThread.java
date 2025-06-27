@@ -106,13 +106,24 @@ public class PlayerThread implements Runnable {
      * @return The chosen {@link Tile} object, or null if input is invalid (no validation implemented).
      */
     public Tile getTileToPlace(){ // Removed parameters as laneNo/tileNo are now local to run() or directly assigned
-        int selectedLaneNo;
-        int selectedTileNo;
+        int selectedLaneNo = 0;
+        int selectedTileNo = 0;
 
-        System.out.println("Enter lane to place:");
-        selectedLaneNo = sc.nextInt(); // Use the class's scanner
-        System.out.println("Enter tile to place:");
-        selectedTileNo = sc.nextInt(); // Use the class's scanner
+         while(selectedLaneNo > PvZDriver.getMaxLanes() || selectedLaneNo < 1){
+            System.out.println("Enter lane to place:");
+            selectedLaneNo = sc.nextInt(); // Use the class's scanner
+            if(selectedLaneNo > PvZDriver.getMaxLanes() || selectedLaneNo < 1 ){
+                 System.out.println("not a valid lane");
+            } 
+        }
+        
+         while(selectedTileNo > PvZDriver.getMaxTiles() || selectedTileNo < 1){
+            System.out.println("Enter tile to place:");
+            selectedTileNo = sc.nextInt(); // Use the class's scanner
+            if(selectedTileNo > PvZDriver.getMaxTiles() || selectedTileNo < 1 ){
+                System.out.println("not a valid tile");
+            }
+         }
 
         // Returns the Tile based on user input (adjusting for 0-based array indexing)
         return lane[selectedLaneNo - 1][selectedTileNo - 1];
