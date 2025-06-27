@@ -110,7 +110,7 @@ public class PvZDriver {
         Plant plant;
         Tile currentTile;
         Zombie zombie;
-        ArrayList<Zombie> zombies; // Corrected to ArrayList
+        ArrayList<Zombie> zombies; 
         Projectile projectile;
         Iterator<Projectile> iterator;
         ArrayList<Projectile> projectiles;

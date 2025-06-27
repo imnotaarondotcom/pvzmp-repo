@@ -51,7 +51,7 @@ public class PlayerThread implements Runnable {
                 if(totalSun >= Peashooter.getCost()){ // Check if player has enough sun
                     // Check if Peashooter is off cooldown for planting
                     if(currentTime - Peashooter.getTimeSinceLastPlant() >= Peashooter.getCooldown()){
-                        userTile = getTileToPlace(); // No parameters needed anymore, scanner is a field
+                        userTile = getTileToPlace(); 
                         if(userTile != null && userTile.getPlant() == null){ // Check if tile is valid and empty
                             // Place new Peashooter and update game state
                             userTile.placePlant(new Peashooter(userTile.getLaneNo(), userTile.getTileNo()));
@@ -70,7 +70,7 @@ public class PlayerThread implements Runnable {
                 if(totalSun >= Sunflower.getCost()){ // Check if player has enough sun
                     // Check if Sunflower is off cooldown for planting
                     if(currentTime - Sunflower.getTimeSinceLastPlant() >= Sunflower.getCooldown()){
-                        userTile = getTileToPlace(); // No parameters needed anymore, scanner is a field
+                        userTile = getTileToPlace(); 
                         if(userTile != null && userTile.getPlant() == null){ // Check if tile is valid and empty
                             // Place new Sunflower and update game state
                             userTile.placePlant(new Sunflower(userTile.getLaneNo(), userTile.getTileNo()));
@@ -105,13 +105,13 @@ public class PlayerThread implements Runnable {
      * Uses the class's shared Scanner instance.
      * @return The chosen {@link Tile} object, or null if input is invalid (no validation implemented).
      */
-    public Tile getTileToPlace(){ // Removed parameters as laneNo/tileNo are now local to run() or directly assigned
+    public Tile getTileToPlace(){
         int selectedLaneNo = 0;
         int selectedTileNo = 0;
 
          while(selectedLaneNo > PvZDriver.getMaxLanes() || selectedLaneNo < 1){
             System.out.println("Enter lane to place:");
-            selectedLaneNo = sc.nextInt(); // Use the class's scanner
+            selectedLaneNo = sc.nextInt(); 
             if(selectedLaneNo > PvZDriver.getMaxLanes() || selectedLaneNo < 1 ){
                  System.out.println("Not a valid lane");
             } 
@@ -119,7 +119,7 @@ public class PlayerThread implements Runnable {
         
          while(selectedTileNo > PvZDriver.getMaxTiles() || selectedTileNo < 1){
             System.out.println("Enter tile to place:");
-            selectedTileNo = sc.nextInt(); // Use the class's scanner
+            selectedTileNo = sc.nextInt(); 
             if(selectedTileNo > PvZDriver.getMaxTiles() || selectedTileNo < 1 ){
                 System.out.println("Not a valid tile");
             }
@@ -129,8 +129,6 @@ public class PlayerThread implements Runnable {
         return lane[selectedLaneNo - 1][selectedTileNo - 1];
     }
     
-    // The commented out method 'placePlant()' was removed as it was empty and not used.
-
     /**
      * Collects all sun objects from a given list and adds their value to the total sun.
      * @param sun An ArrayList of {@link Sun} objects to be collected.
@@ -145,6 +143,6 @@ public class PlayerThread implements Runnable {
                 sun.remove(sun.size() - 1); // Remove collected sun from the list
             }
         }
-        return collectedSun; // Return sun collected in this specific call
+        return collectedSun; // Return sun collected
     }
 }
