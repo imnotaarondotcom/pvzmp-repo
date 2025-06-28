@@ -1,3 +1,7 @@
+import java.util.*;
+import java.time.Duration;
+import java.time.Instant;
+
 /**
  * This class is the main driver for the Plants vs. Zombies simulation game.
  * It initializes the game board, manages the primary game loop, handles the spawning
@@ -8,9 +12,6 @@
  * @version 1.0
  * @since 2025-06-27
  */
-import java.util.*;
-import java.time.Duration;
-import java.time.Instant;
 
 public class PvZDriver {
     /** A shared Random instance for generating random numbers, e.g., for zombie and sun spawning. */
